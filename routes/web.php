@@ -23,4 +23,8 @@ Route::get('/', function () {
 
 Route::prefix('admin')->namespace('\App\Http\Controllers\Admin')->name('admin.')->group(function () {
     Route::get('/', 'MainController@index')->name('index');
+    Route::resource('/categories', '\App\Http\Controllers\Admin\CategoryController');
 });
+
+// php artisan route:list
+// php artisan route:list --path=admin/cat
