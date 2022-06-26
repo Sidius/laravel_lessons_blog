@@ -10,6 +10,8 @@ class Tag extends Model
 {
     use HasFactory, Sluggable;
 
+    protected $fillable = ['title'];
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);

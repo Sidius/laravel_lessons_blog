@@ -198,7 +198,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
                             <p>
-                                Список категорий
+                                Категории
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -213,6 +213,29 @@
                                 <a href="{{ route('admin.categories.create') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Новая категория</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tags"></i>
+                            <p>
+                                Теги
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.tags.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список тегов</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.tags.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новый тег</p>
                                 </a>
                             </li>
                         </ul>
