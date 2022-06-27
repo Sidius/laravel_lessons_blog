@@ -25,6 +25,7 @@ Route::prefix('admin')->namespace('\App\Http\Controllers\Admin')->name('admin.')
     Route::get('/', 'MainController@index')->name('index');
     Route::resource('/categories', '\App\Http\Controllers\Admin\CategoryController');
     Route::resource('/tags', '\App\Http\Controllers\Admin\TagController');
+    Route::resource('/posts', '\App\Http\Controllers\Admin\PostController');
 });
 
 // php artisan route:list

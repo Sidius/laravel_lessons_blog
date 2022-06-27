@@ -240,11 +240,28 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon far fa-circle text-info"></i>
-                            <p>Informational</p>
+                            <i class="nav-icon fas fa-edit"></i>
+                            <p>
+                                Статьи
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.posts.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Список статей</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.posts.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Новая статья</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
