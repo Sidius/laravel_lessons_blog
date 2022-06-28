@@ -31,18 +31,26 @@
 
                                 <div class="form-group">
                                     <label for="description">Цитата</label>
-                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Цитата ..."></textarea>
+                                    <textarea id="description"
+                                              name="description"
+                                              class="form-control @error('description') is-invalid @enderror"
+                                              rows="3" placeholder="Цитата ..."></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="content">Контент</label>
-                                    <textarea id="content" name="content" class="form-control" rows="7" placeholder="Цитата ..."></textarea>
+                                    <textarea id="content"
+                                              name="content"
+                                              class="form-control @error('content') is-invalid @enderror"
+                                              rows="7" placeholder="Контент ..."></textarea>
                                 </div>
 
                                 @isset($categories)
                                     <div class="form-group">
                                         <label for="category_id">Категория</label>
-                                        <select id="category_id" name="category_id" class="form-control">
+                                        <select id="category_id"
+                                                name="category_id"
+                                                class="form-control @error('category_id') is-invalid @enderror">
                                             <option>Выбор категории</option>
                                             @foreach($categories as $k => $v)
                                                 <option value="{{ $k }}">{{ $v }}</option>
@@ -54,7 +62,10 @@
                                 @isset($tags)
                                     <div class="form-group">
                                         <label for="tags">Теги</label>
-                                        <select id="tags" name="tags[]" class="select2" multiple="multiple" data-placeholder="Выбор тегов" style="width: 100%;">
+                                        <select id="tags" name="tags[]"
+                                                class="select2"
+                                                multiple="multiple"
+                                                data-placeholder="Выбор тегов" style="width: 100%;">
                                             @foreach($tags as $k => $v)
                                                 <option value="{{ $k }}">{{ $v }}</option>
                                             @endforeach
