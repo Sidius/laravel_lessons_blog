@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 // php artisan make:controller Admin/CategoryController -r
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::query()->paginate(10);
+        $posts = Post::query()->with('category', 'tags')->paginate(10);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -56,10 +57,7 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        if ($request->hasFile('thumbnail')) {
-            $folder = date('Y-m-d');
-            $data['thumbnail'] = $request->file('thumbnail')->store("images/{$folder}");
-        }
+        $data['thumbnail'] = Post::uploadImage($request);
 
         $post = Post::query()->create($data);
         $post->tags()->sync($request->tags);
@@ -87,7 +85,12 @@ class PostController extends Controller
     public function edit($id)
     {
         $title = 'Редактирование статьи';
-        return view('admin.posts.edit', compact('title'));
+
+        $post = Post::query()->find($id);
+        $categories = Category::query()->pluck('title', 'id')->all();
+        $tags = Tag::query()->pluck('title', 'id')->all();
+
+        return view('admin.posts.edit', compact('title', 'post', 'categories', 'tags'));
     }
 
     /**
@@ -100,8 +103,24 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-           'title' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|integer',
+            'thumbnail' => 'nullable|image',
         ]);
+
+        $post = Post::query()->find($id);
+        $data = $request->all();
+
+        $thumbnail = Post::uploadImage($request, $post->thumbnail);
+
+        if ($thumbnail) {
+            $data['thumbnail'] = $thumbnail;
+        }
+
+        $post->update($data);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('admin.posts.index')->with('success', 'Изменения сохранены');
     }
@@ -114,8 +133,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-//        $category = Category::query()->find($id);
-//        $category->delete();
+        $post = Post::query()->find($id);
+//        $post->tags()->sync([]);
+        Storage::delete($post->thumbnail);
+        $post->delete();
         return redirect()->route('admin.posts.index')->with('success', 'Статья удалена');
     }
 }
