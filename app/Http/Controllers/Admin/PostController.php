@@ -10,7 +10,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-// php artisan make:controller Admin/CategoryController -r
+// php artisan make:controller Admin/PostController -r
 class PostController extends Controller
 {
     /**

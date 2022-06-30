@@ -7,7 +7,7 @@ use App\Http\Requests\StoreCategory;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
-// php artisan make:controller Admin/CategoryController -r
+// php artisan make:controller Admin/TagController -r
 class TagController extends Controller
 {
     /**
