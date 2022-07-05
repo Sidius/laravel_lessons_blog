@@ -12,6 +12,11 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <link rel="stylesheet" href="{{ asset('public/assets/admin/css/admin.css') }}">
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 300px;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -315,5 +320,73 @@
         }
     });
 </script>
+
+<script src="{{ asset('public/assets/admin/ckeditor5/build/ckeditor.js') }}"></script>
+<script src="{{ asset('public/assets/admin/ckfinder/ckfinder.js') }}"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ), {
+            ckfinder: {
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+            },
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'bold',
+                    'italic',
+                    'link',
+                    'bulletedList',
+                    'numberedList',
+                    '|',
+                    'indent',
+                    'outdent',
+                    'aligment',
+                    '|',
+                    'blockQuote',
+                    'insertTable',
+                    'undo',
+                    'redo',
+                    'CKFinder',
+                    'mediaEmbed',
+                ],
+                language: 'ru',
+                image: {
+                    toolbar: [ 'toggleImageCaption', 'imageTextAlternative' ]
+                },
+                // image: {
+                //     toolbar: [
+                //         'imageTextAlternative',
+                //         'imageStyle:full',
+                //         'imageStyle:side',
+                //     ],
+                // },
+                table: {
+                    contentToolbar: [
+                        'tableColumn',
+                        'tableRow',
+                        'mergeTableCells',
+                    ],
+                },
+                licenseKey: '',
+            }
+        } )
+        .catch( function( error ) {
+            console.error( error );
+        } );
+
+    ClassicEditor
+        .create( document.querySelector( '#description' ), {
+            ckfinder: {
+                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+            },
+            toolbar: [ 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
+        } )
+        .catch( function( error ) {
+            console.error( error );
+        } );
+
+</script>
+
 </body>
 </html>
