@@ -319,6 +319,10 @@
             $(this).closest('.has-treeview').addClass('menu-open');
         }
     });
+
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
 </script>
 
 <script src="{{ asset('public/assets/admin/ckeditor5/build/ckeditor.js') }}"></script>

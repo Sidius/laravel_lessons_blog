@@ -87,7 +87,7 @@
                                                 <label class="custom-file-label" for="thumbnail">Выбрать файл</label>
                                             </div>
                                         </div>
-                                        <div><img src="{{ $post->getImage() }}" alt="" class="img-thumbnail mt-2" width="30"></div>
+                                        <div><img src="{{ $post->getImage() }}" alt="" class="img-thumbnail mt-2" width="500"></div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
