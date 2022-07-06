@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@section('title')
-            AdminLTE 3 | Blank Page
-        @show</title>
+    <title>@section('title')AdminLTE 3 | Blank Page@show</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -26,7 +24,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" href="#" data-enable-remember="true" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <a href="../../index3.html" class="nav-link">Home</a>
@@ -320,75 +318,77 @@
         }
     });
 
-    $(document).ready(function () {
-        bsCustomFileInput.init();
-    });
+    bsCustomFileInput.init();
 </script>
 
 <script src="{{ asset('public/assets/admin/ckeditor5/build/ckeditor.js') }}"></script>
 <script src="{{ asset('public/assets/admin/ckfinder/ckfinder.js') }}"></script>
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#content' ), {
-            ckfinder: {
-                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-            },
-            toolbar: {
-                items: [
-                    'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'link',
-                    'bulletedList',
-                    'numberedList',
-                    '|',
-                    'indent',
-                    'outdent',
-                    'aligment',
-                    '|',
-                    'blockQuote',
-                    'insertTable',
-                    'undo',
-                    'redo',
-                    'CKFinder',
-                    'mediaEmbed',
-                ],
-                language: 'ru',
-                image: {
-                    toolbar: [ 'toggleImageCaption', 'imageTextAlternative' ]
+    if (document.querySelector( '#content' )) {
+        ClassicEditor
+            .create(document.querySelector('#content'), {
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
                 },
-                // image: {
-                //     toolbar: [
-                //         'imageTextAlternative',
-                //         'imageStyle:full',
-                //         'imageStyle:side',
-                //     ],
-                // },
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells',
+                toolbar: {
+                    items: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'indent',
+                        'outdent',
+                        'alignment',
+                        '|',
+                        'blockQuote',
+                        'insertTable',
+                        'undo',
+                        'redo',
+                        'CKFinder',
+                        'mediaEmbed',
                     ],
-                },
-                licenseKey: '',
-            }
-        } )
-        .catch( function( error ) {
-            console.error( error );
-        } );
+                    language: 'ru',
+                    image: {
+                        toolbar: ['toggleImageCaption', 'imageTextAlternative']
+                    },
+                    // image: {
+                    //     toolbar: [
+                    //         'imageTextAlternative',
+                    //         'imageStyle:full',
+                    //         'imageStyle:side',
+                    //     ],
+                    // },
+                    table: {
+                        contentToolbar: [
+                            'tableColumn',
+                            'tableRow',
+                            'mergeTableCells',
+                        ],
+                    },
+                    licenseKey: '',
+                }
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    }
 
-    ClassicEditor
-        .create( document.querySelector( '#description' ), {
-            ckfinder: {
-                uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
-            },
-            toolbar: [ 'heading', '|', 'bold', 'italic', '|', 'undo', 'redo' ]
-        } )
-        .catch( function( error ) {
-            console.error( error );
-        } );
+    if (document.querySelector( '#description' )) {
+        ClassicEditor
+            .create(document.querySelector('#description'), {
+                ckfinder: {
+                    uploadUrl: '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json'
+                },
+                toolbar: ['heading', '|', 'bold', 'italic', '|', 'undo', 'redo']
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    }
 
 </script>
 
