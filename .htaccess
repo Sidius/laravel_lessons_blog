@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule (.*) /public/$l [L]
+RewriteRule (.*) /public/$1 [L]
