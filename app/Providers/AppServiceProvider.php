@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +26,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.sidebar', function ($view) {
+
+            if (Cache::has('cats')) {
+                $cats = Cache::get('cats');
+            } else {
+                $cats = Category::query()->withCount('posts')->orderBy('posts_count', 'desc')->get();
+                Cache::put('cats', $cats, 300);
+            }
+
+            $view->with('popular_posts', Post::query()->orderBy('views', 'desc')->limit(3)->get());
+            $view->with('cats', $cats);
+        });
     }
 }
