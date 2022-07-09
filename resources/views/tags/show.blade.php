@@ -4,7 +4,7 @@
 
 @section('page-title')
 
-    @isset($category)
+    @isset($tag)
         <div class="page-title db">
             <div class="container">
                 <div class="row">
