@@ -29,7 +29,7 @@
     @isset($posts)
         <div class="page-wrapper">
             <div class="blog-custom-build">
-                @if($posts->count)
+                @if($posts->count())
                     @foreach($posts as $post)
                         <div class="blog-box wow fadeIn">
                             <div class="post-media">
