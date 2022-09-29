@@ -15,7 +15,7 @@ class SearchController extends Controller
         ]);
 
         $s = $request->s;
-        $posts = Post::query()->where('title', 'LIKE', "%{$s}%")->with('category')->paginate(2);
+        $posts = Post::query()->like($s)->with('category')->paginate(2);
         return view('posts.search', compact('posts', 's'));
     }
 }
